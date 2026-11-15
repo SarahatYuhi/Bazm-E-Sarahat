@@ -7,32 +7,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --bg: #f3dfe6;
-        --page: #f0d5df;
-        --ink: #201518;
-        --muted: #4a2d35;
-        --line: rgba(33, 20, 24, 0.9);
-        --accent: #8b465b;
-        --soft: rgba(255,255,255,0.18);
+        --bg: #f2e6d8;
+        --bg-deep: #e7d3ba;
+        --page: rgba(250, 245, 238, 0.9);
+        --paper: rgba(255, 250, 244, 0.6);
+        --ink: #201914;
+        --muted: #5a463e;
+        --line: rgba(48, 34, 25, 0.55);
+        --accent: #7b5a39;
+        --accent-soft: rgba(123, 90, 57, 0.12);
+        --shadow: rgba(41, 29, 22, 0.12);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14181d;
+          --bg-deep: #0d1014;
+          --page: rgba(22, 27, 31, 0.9);
+          --paper: rgba(38, 44, 49, 0.7);
+          --ink: #efe7df;
+          --muted: #c8b5a3;
+          --line: rgba(214, 200, 186, 0.28);
+          --accent: #d8b373;
+          --accent-soft: rgba(216, 179, 115, 0.1);
+          --shadow: rgba(0, 0, 0, 0.35);
+        }
       }
 
       * { box-sizing: border-box; }
 
+      html {
+        background: var(--bg);
+      }
+
       body {
         margin: 0;
         min-height: 100vh;
-        background: var(--bg);
+        background:
+          radial-gradient(circle at top, rgba(255,255,255,0.38), transparent 35%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
         color: var(--ink);
         font-family: 'Cormorant Garamond', serif;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          radial-gradient(rgba(44, 31, 21, 0.07) 0.7px, transparent 0.9px),
+          radial-gradient(rgba(255,255,255,0.12) 0.6px, transparent 0.8px);
+        background-position: 0 0, 4px 5px;
+        background-size: 9px 9px;
+        opacity: 0.38;
+        mix-blend-mode: multiply;
       }
 
       .page-shell {
+        position: relative;
         max-width: 1180px;
         margin: 1.5rem auto;
         padding: 1rem 1.2rem 2rem;
-        background: var(--page);
-        border: 2px solid var(--line);
-        box-shadow: 0 0 0 6px rgba(255,255,255,0.12);
+        background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent), var(--page);
+        border: 1px solid var(--line);
+        box-shadow: 0 20px 45px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.2);
+      }
+
+      .page-shell::before {
+        content: "";
+        position: absolute;
+        inset: 12px;
+        border: 1px solid rgba(123, 90, 57, 0.22);
+        pointer-events: none;
       }
 
       .topbar {
@@ -40,14 +88,16 @@
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        padding: 0.5rem 0.5rem 0;
+        padding: 0.75rem 0.75rem 0.5rem;
+        border-bottom: 1px solid rgba(123, 90, 57, 0.25);
       }
 
       .brand {
         font-family: 'Cormorant Garamond', serif;
         font-style: italic;
-        font-size: 2.3rem;
+        font-size: 2.5rem;
         letter-spacing: 0.05em;
+        color: var(--ink);
       }
 
       .nav {
@@ -61,15 +111,17 @@
       .nav a {
         color: var(--ink);
         text-decoration: none;
-        font-size: 1.1rem;
+        font-size: 1.08rem;
         letter-spacing: 0.04em;
         border-bottom: 2px solid transparent;
-        padding: 0.3rem 0.35rem;
+        padding: 0.35rem 0.5rem 0.2rem;
+        transition: border-color 0.2s ease, background 0.2s ease;
       }
 
       .nav a.active,
       .nav a:hover {
-        border-color: var(--line);
+        border-color: var(--accent);
+        background: rgba(255,255,255,0.08);
       }
 
       .content {
@@ -80,6 +132,7 @@
         margin: 0 0 1.5rem;
         font-size: clamp(2.8rem, 5vw, 5rem);
         letter-spacing: 0.02em;
+        color: var(--ink);
       }
 
       .category-list {
@@ -92,7 +145,8 @@
 
       .category-item {
         border: 1px solid var(--line);
-        background: var(--soft);
+        background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent), var(--paper);
+        box-shadow: 0 10px 22px rgba(29, 19, 15, 0.05);
       }
 
       .category-item a {
@@ -100,19 +154,27 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
-        padding: 1rem 1.2rem;
+        padding: 1.05rem 1.25rem;
         color: var(--ink);
         text-decoration: none;
+        border-top: 1px solid rgba(123, 90, 57, 0.14);
+        border-bottom: 1px solid rgba(123, 90, 57, 0.14);
+      }
+
+      .category-item a:hover {
+        background: var(--accent-soft);
       }
 
       .title-roman {
         font-size: clamp(1.5rem, 2vw, 2rem);
+        line-height: 1.25;
       }
 
       .title-ur {
         font-family: 'Noto Nastaliq Urdu', serif;
         color: var(--accent);
         font-size: 1.5rem;
+        line-height: 1.6;
       }
 
       @media (max-width: 660px) {
