@@ -1,4 +1,5 @@
 title: Sarahat Yuhi
+baseurl: "/Bazm-E-Sarahat"
 collections:
   poems:
     output: true

@@ -9,7 +9,7 @@ title: Poet Name
 <ul class="poem-list">
   {% for p in site.poems %}
     <li class="poem-item">
-      <a href="{{ p.url }}">
+      <a href="{{ site.baseurl }}{{ p.url }}">
         <span class="title-roman">{{ p.title_roman }}</span>
         <span class="title-ur" lang="ur" dir="rtl">{{ p.title_ur }}</span>
       </a>
