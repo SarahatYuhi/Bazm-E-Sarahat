@@ -2,6 +2,7 @@
 layout: poem
 title_ur: آتی ہے استمامِ بہاراں کے واسط ہم
 title_roman: "Aae hein ehtimaam e baharan ke wastey\nHam phir rafu e chaak e garebaan kiye hue"
+permalink: /poems/shayari/shayari1/
 ---
 
 <div class="urdu" lang="ur" dir="rtl">

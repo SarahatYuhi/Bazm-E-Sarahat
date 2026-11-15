@@ -3,6 +3,7 @@ layout: poem
 title_ur: ترا غم رہے سلامت
 title_roman: Tirā ġham rahe salāmat
 form: ghazal
+permalink: /poems/ghazal/poem1/
 ---
 
 <div class="urdu" lang="ur" dir="rtl">
