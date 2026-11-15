@@ -7,11 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --paper: #f8f1e7;
-        --ink: #2c1f1a;
-        --muted: #695647;
-        --gold: #9a7a44;
-        --line: rgba(98, 72, 53, 0.22);
+        --bg: #fdf3f6;
+        --bg-deep: #f7e5eb;
+        --panel: rgba(255, 255, 255, 0.38);
+        --ink: #432d34;
+        --muted: #734d5b;
+        --rose: #d78ea3;
+        --rose-deep: #b96d82;
+        --rose-soft: #f0c6d3;
+        --line: rgba(125, 81, 93, 0.45);
       }
 
       * { box-sizing: border-box; }
@@ -20,48 +24,85 @@
         margin: 0;
         min-height: 100vh;
         background:
-          linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
-          radial-gradient(circle at top, #f7efe4, #f3e9dc 38%, #f2e7d9 100%);
+          radial-gradient(circle at top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 30%),
+          linear-gradient(135deg, var(--bg) 0%, var(--bg-deep) 100%);
         color: var(--ink);
         font-family: 'Cormorant Garamond', serif;
       }
 
+      .frame {
+        position: relative;
+        max-width: 860px;
+        margin: 2rem auto;
+        padding: 1.2rem;
+        background: rgba(255,255,255,0.12);
+        border: 2px solid rgba(127, 77, 90, 0.55);
+        box-shadow: 0 0 0 8px rgba(255,255,255,0.18), 0 18px 40px rgba(95, 58, 70, 0.08);
+      }
+
+      .frame::before,
+      .frame::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background-image: radial-gradient(circle at 50% 50%, #dca4b3 0%, #dca4b3 14%, transparent 15%),
+                          radial-gradient(circle at 50% 50%, #dca4b3 0%, #dca4b3 12%, transparent 13%),
+                          radial-gradient(circle at 50% 50%, #dca4b3 0%, #dca4b3 10%, transparent 11%);
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        opacity: 0.7;
+      }
+
+      .frame::before {
+        left: -8px;
+        top: -8px;
+        transform: rotate(180deg);
+      }
+
+      .frame::after {
+        right: -8px;
+        bottom: -8px;
+      }
+
       .page {
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 4rem 1.25rem 5rem;
+        position: relative;
+        background: rgba(255,255,255,0.18);
+        border: 1px solid var(--line);
+        padding: 2.2rem 1.4rem 3rem;
       }
 
       .hero {
         text-align: center;
-        padding-bottom: 2rem;
+        padding-bottom: 1.5rem;
         border-bottom: 1px solid var(--line);
       }
 
       h1 {
         margin: 0;
-        font-size: clamp(2.7rem, 6vw, 4.6rem);
+        font-size: clamp(2.8rem, 6vw, 5rem);
         font-weight: 600;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.05em;
+        color: var(--ink);
       }
 
       .subtitle {
-        margin-top: 0.9rem;
+        margin-top: 0.7rem;
         color: var(--muted);
-        font-size: 1.15rem;
-        letter-spacing: 0.08em;
+        font-size: 1rem;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
       }
 
       .content {
-        margin-top: 2.5rem;
+        margin-top: 2.2rem;
       }
 
       .intro {
-        margin: 0 0 0.6rem;
-        font-size: clamp(2rem, 4vw, 2.8rem);
-        font-weight: 500;
+        margin: 0 0 0.5rem;
         text-align: center;
+        font-size: clamp(2.1rem, 4vw, 3rem);
+        font-weight: 500;
       }
 
       .lead {
@@ -69,8 +110,8 @@
         max-width: 560px;
         text-align: center;
         font-size: 1.35rem;
+        line-height: 1.6;
         color: var(--muted);
-        line-height: 1.5;
       }
 
       .poem-list {
@@ -83,14 +124,15 @@
 
       .poem-item {
         border: 1px solid var(--line);
-        background: rgba(255,255,255,0.18);
-        box-shadow: 0 2px 10px rgba(53, 34, 20, 0.03);
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        background: var(--panel);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        box-shadow: 0 6px 18px rgba(120, 74, 89, 0.05);
       }
 
       .poem-item:hover {
         transform: translateY(-2px);
-        border-color: rgba(154, 122, 68, 0.5);
+        border-color: rgba(185, 109, 130, 0.7);
+        box-shadow: 0 12px 24px rgba(120, 74, 89, 0.08);
       }
 
       .poem-item a {
@@ -98,25 +140,34 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
-        padding: 1.1rem 1.3rem;
-        color: var(--ink);
+        padding: 1.2rem 1.3rem;
         text-decoration: none;
+        color: var(--ink);
       }
 
       .title-roman {
-        font-size: clamp(1.4rem, 2vw, 1.7rem);
+        font-size: clamp(1.5rem, 2vw, 1.9rem);
         font-weight: 500;
         letter-spacing: 0.02em;
       }
 
       .title-ur {
         font-family: 'Noto Nastaliq Urdu', serif;
-        font-size: 1.5rem;
-        line-height: 1.6;
-        color: var(--gold);
+        font-size: 1.6rem;
+        line-height: 1.7;
+        color: var(--rose-deep);
       }
 
       @media (max-width: 560px) {
+        .frame {
+          margin: 1rem;
+          padding: 0.8rem;
+        }
+
+        .page {
+          padding: 1.4rem 0.9rem 2.2rem;
+        }
+
         .poem-item a {
           flex-direction: column;
           align-items: flex-start;
@@ -125,15 +176,17 @@
     </style>
   </head>
   <body>
-    <div class="page">
-      <header class="hero">
-        <h1>{{ site.title }}</h1>
-        <div class="subtitle">Poetry in Urdu & Roman</div>
-      </header>
+    <div class="frame">
+      <div class="page">
+        <header class="hero">
+          <h1>{{ site.title }}</h1>
+          <div class="subtitle">Poetry in Urdu &amp; Roman</div>
+        </header>
 
-      <main class="content">
-        {{ content }}
-      </main>
+        <main class="content">
+          {{ content }}
+        </main>
+      </div>
     </div>
   </body>
 </html>
