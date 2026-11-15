@@ -7,81 +7,90 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --bg: #f2e6d8;
-        --bg-deep: #e7d3ba;
-        --page: rgba(250, 245, 238, 0.9);
-        --paper: rgba(255, 250, 244, 0.6);
-        --ink: #201914;
-        --muted: #5a463e;
-        --line: rgba(48, 34, 25, 0.55);
-        --accent: #7b5a39;
-        --accent-soft: rgba(123, 90, 57, 0.12);
-        --shadow: rgba(41, 29, 22, 0.12);
-      }
+              --bg: #180d15;
+              --bg-deep: #2a1620;
+              --bg-warm: #441f2d;
+              --page: rgba(45, 28, 34, 0.9);
+              --paper: rgba(79, 51, 59, 0.82);
+              --paper-warm: rgba(238, 220, 200, 0.06);
+              --ink: #f7edf1;
+              --muted: #d6b4c4;
+              --line: rgba(214, 170, 124, 0.34);
+              --line-soft: rgba(239, 196, 158, 0.18);
+              --accent: #e8c1b8;
+              --accent-strong: #f7d9d0;
+              --accent-soft: rgba(232, 183, 179, 0.12);
+              --gold: #d5ae7d;
+              --gold-soft: rgba(213, 174, 125, 0.18);
+              --shadow: rgba(11, 5, 10, 0.55);
+            }
 
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #14181d;
-          --bg-deep: #0d1014;
-          --page: rgba(22, 27, 31, 0.9);
-          --paper: rgba(38, 44, 49, 0.7);
-          --ink: #efe7df;
-          --muted: #c8b5a3;
-          --line: rgba(214, 200, 186, 0.28);
-          --accent: #d8b373;
-          --accent-soft: rgba(216, 179, 115, 0.1);
-          --shadow: rgba(0, 0, 0, 0.35);
-        }
-      }
+            * { box-sizing: border-box; }
 
-      * { box-sizing: border-box; }
+            html {
+              background: var(--bg);
+            }
 
-      html {
-        background: var(--bg);
-      }
+            body {
+              margin: 0;
+              min-height: 100vh;
+              background:
+                radial-gradient(circle at 50% 0%, rgba(234, 166, 179, 0.18), transparent 28%),
+                radial-gradient(circle at 20% 20%, rgba(157, 86, 102, 0.2), transparent 30%),
+                linear-gradient(180deg, rgba(245, 227, 205, 0.05), transparent 26%),
+                linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+              color: var(--ink);
+              font-family: 'Cormorant Garamond', serif;
+              position: relative;
+            }
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        background:
-          radial-gradient(circle at top, rgba(255,255,255,0.38), transparent 35%),
-          linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-        color: var(--ink);
-        font-family: 'Cormorant Garamond', serif;
-        position: relative;
-      }
+            body::before {
+              content: "";
+              position: fixed;
+              inset: 0;
+              pointer-events: none;
+              background-image:
+                linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+                radial-gradient(rgba(255, 240, 216, 0.18) 0.7px, transparent 1.1px),
+                radial-gradient(rgba(94, 63, 60, 0.22) 0.8px, transparent 1.2px);
+              background-position: 0 0, 0 0, 7px 9px;
+              background-size: cover, 12px 12px, 14px 14px;
+              opacity: 0.55;
+              mix-blend-mode: screen;
+            }
 
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background-image:
-          radial-gradient(rgba(44, 31, 21, 0.07) 0.7px, transparent 0.9px),
-          radial-gradient(rgba(255,255,255,0.12) 0.6px, transparent 0.8px);
-        background-position: 0 0, 4px 5px;
-        background-size: 9px 9px;
-        opacity: 0.38;
-        mix-blend-mode: multiply;
-      }
+            .page-shell {
+              position: relative;
+              max-width: 1280px;
+              margin: 1.5rem auto;
+              padding: 0.8rem 1rem 1.5rem;
+              background:
+                linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+                var(--page);
+              border: 1px solid var(--line);
+              box-shadow: 0 18px 42px var(--shadow), inset 0 1px 0 rgba(255, 228, 210, 0.12);
+              overflow: hidden;
+            }
 
-      .page-shell {
-        position: relative;
-        max-width: 1280px;
-        margin: 1.5rem auto;
-        padding: 0.8rem 1rem 1.5rem;
-        background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent), var(--page);
-        border: 1px solid var(--line);
-        box-shadow: 0 20px 45px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.2);
-      }
+            .page-shell::before {
+              content: "";
+              position: absolute;
+              inset: 12px;
+              border: 1px solid var(--line-soft);
+              pointer-events: none;
+            }
 
-      .page-shell::before {
-        content: "";
-        position: absolute;
-        inset: 12px;
-        border: 1px solid rgba(123, 90, 57, 0.22);
-        pointer-events: none;
-      }
+            .page-shell::after {
+              content: "";
+              position: absolute;
+              left: 20px;
+              right: 20px;
+              top: 18px;
+              height: 1px;
+              background: linear-gradient(90deg, transparent, var(--gold), transparent);
+              opacity: 0.8;
+              pointer-events: none;
+            }
 
       .topbar {
         display: flex;
@@ -115,13 +124,14 @@
         letter-spacing: 0.02em;
         padding: 0.35rem 0.5rem 0.2rem;
         border-bottom: 2px solid transparent;
-        transition: border-color 0.2s ease, background 0.2s ease;
+        transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
       }
 
       .nav a.active,
       .nav a:hover {
-        border-color: var(--accent);
-        background: rgba(255,255,255,0.08);
+        border-color: var(--gold);
+        background: rgba(232, 183, 179, 0.08);
+        color: var(--accent-strong);
       }
 
       .hero {
@@ -136,15 +146,15 @@
       .quote-block {
         position: relative;
         padding: 1.5rem 1.5rem 1.2rem;
-        border: 1px solid rgba(123, 90, 57, 0.2);
-        background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent), rgba(255,255,255,0.04);
-        box-shadow: 0 12px 25px rgba(34, 24, 18, 0.04);
+        border: 1px solid rgba(232, 183, 179, 0.24);
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent), rgba(255,255,255,0.02);
+        box-shadow: 0 10px 28px rgba(7, 4, 6, 0.22);
       }
 
       .quote-mark {
         font-size: 3rem;
         line-height: 0.8;
-        color: var(--accent);
+        color: var(--gold);
         display: inline-block;
         transform: translateY(-0.2rem);
       }
@@ -153,19 +163,20 @@
         font-size: clamp(2.1rem, 3vw, 4rem);
         line-height: 1.05;
         font-weight: 500;
-        color: var(--ink);
+        color: #f9edf0;
         margin: 0.3rem 0 0;
         letter-spacing: 0.01em;
+        text-shadow: 0 0 18px rgba(243, 200, 201, 0.16);
       }
 
       .empty-visual {
         width: 100%;
         min-height: 280px;
-        border: 1px solid rgba(123, 90, 57, 0.2);
+        border: 1px solid rgba(232, 183, 179, 0.18);
         background:
-          linear-gradient(135deg, rgba(123, 90, 57, 0.06), rgba(255,255,255,0.04)),
-          radial-gradient(circle at center, rgba(123, 90, 57, 0.12), transparent 60%);
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+          linear-gradient(135deg, rgba(232, 183, 179, 0.06), rgba(255,255,255,0.02)),
+          radial-gradient(circle at center, rgba(232, 183, 179, 0.18), transparent 60%);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 12px 28px rgba(17, 8, 13, 0.22);
       }
 
       .name-wrap {
@@ -181,14 +192,14 @@
         letter-spacing: -0.08em;
         text-transform: uppercase;
         font-weight: 700;
-        color: rgba(255,255,255,0.82);
-        text-shadow: 0 1px 0 rgba(0,0,0,0.08), 0 10px 25px rgba(0,0,0,0.08);
+        color: #f5dfe5;
+        text-shadow: 0 0 20px rgba(241, 169, 182, 0.14), 0 20px 50px rgba(0,0,0,0.15);
       }
 
       .subhead {
         margin-top: 0.5rem;
         text-align: center;
-        color: var(--muted);
+        color: var(--gold);
         font-size: 0.82rem;
         letter-spacing: 0.28em;
         text-transform: uppercase;
