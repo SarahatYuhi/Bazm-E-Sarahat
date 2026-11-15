@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #f3dfe6;
+        --page: #f0d5df;
+        --ink: #201518;
+        --muted: #4a2d35;
+        --line: rgba(33, 20, 24, 0.9);
+        --accent: #8b465b;
+        --soft: rgba(255,255,255,0.18);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Cormorant Garamond', serif;
+      }
+
+      .page-shell {
+        max-width: 1180px;
+        margin: 1.5rem auto;
+        padding: 1rem 1.2rem 2rem;
+        background: var(--page);
+        border: 2px solid var(--line);
+        box-shadow: 0 0 0 6px rgba(255,255,255,0.12);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.5rem 0.5rem 0;
+      }
+
+      .brand {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 2.3rem;
+        letter-spacing: 0.05em;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 1.1rem;
+        letter-spacing: 0.04em;
+        border-bottom: 2px solid transparent;
+        padding: 0.3rem 0.35rem;
+      }
+
+      .nav a.active,
+      .nav a:hover {
+        border-color: var(--line);
+      }
+
+      .content {
+        padding: 2rem 1rem 0.5rem;
+      }
+
+      h1 {
+        margin: 0 0 1.5rem;
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        letter-spacing: 0.02em;
+      }
+
+      .category-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .category-item {
+        border: 1px solid var(--line);
+        background: var(--soft);
+      }
+
+      .category-item a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.2rem;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .title-roman {
+        font-size: clamp(1.5rem, 2vw, 2rem);
+      }
+
+      .title-ur {
+        font-family: 'Noto Nastaliq Urdu', serif;
+        color: var(--accent);
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 660px) {
+        .topbar {
+          flex-direction: column;
+        }
+
+        .category-item a {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">Sarahat</div>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="{{ site.baseurl }}/" class="active">Home page</a>
+          <a href="{{ site.baseurl }}/ghazal/">Ghazal</a>
+          <a href="{{ site.baseurl }}/shayari/">Shayari</a>
+        </nav>
+      </header>
+
+      <main class="content">
+        <h1>{{ page.title }}</h1>
+        {{ content }}
+      </main>
+    </div>
+  </body>
+</html>
