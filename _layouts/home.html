@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --paper: #f8f1e7;
+        --ink: #2c1f1a;
+        --muted: #695647;
+        --gold: #9a7a44;
+        --line: rgba(98, 72, 53, 0.22);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+          radial-gradient(circle at top, #f7efe4, #f3e9dc 38%, #f2e7d9 100%);
+        color: var(--ink);
+        font-family: 'Cormorant Garamond', serif;
+      }
+
+      .page {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 4rem 1.25rem 5rem;
+      }
+
+      .hero {
+        text-align: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.7rem, 6vw, 4.6rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .subtitle {
+        margin-top: 0.9rem;
+        color: var(--muted);
+        font-size: 1.15rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .content {
+        margin-top: 2.5rem;
+      }
+
+      .intro {
+        margin: 0 0 0.6rem;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .lead {
+        margin: 0 auto 2rem;
+        max-width: 560px;
+        text-align: center;
+        font-size: 1.35rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .poem-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .poem-item {
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.18);
+        box-shadow: 0 2px 10px rgba(53, 34, 20, 0.03);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .poem-item:hover {
+        transform: translateY(-2px);
+        border-color: rgba(154, 122, 68, 0.5);
+      }
+
+      .poem-item a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.1rem 1.3rem;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .title-roman {
+        font-size: clamp(1.4rem, 2vw, 1.7rem);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      .title-ur {
+        font-family: 'Noto Nastaliq Urdu', serif;
+        font-size: 1.5rem;
+        line-height: 1.6;
+        color: var(--gold);
+      }
+
+      @media (max-width: 560px) {
+        .poem-item a {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <h1>{{ site.title }}</h1>
+        <div class="subtitle">Poetry in Urdu & Roman</div>
+      </header>
+
+      <main class="content">
+        {{ content }}
+      </main>
+    </div>
+  </body>
+</html>
